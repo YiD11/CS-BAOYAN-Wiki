@@ -48,7 +48,14 @@ export default defineConfig({
 				},
 				{
 					label: '保研指南',
-					autogenerate: { directory: '保研指南' },
+					items: [
+						{ label: '基础概念', slug: '保研指南/基础概念'},
+						{ label: '保研黑话', slug: '保研指南/保研黑话'},
+						{ label: '保研时刻表', slug: '保研指南/保研时刻表'},
+						{ label: '素养掌握', slug: '保研指南/素养掌握'},
+						{ label: '科研二三事', slug: '保研指南/科研二三事'},
+						{ label: '院校解析', slug: '保研指南/院校解析'},
+					],
 				},
 				{
 					label: '保研工具箱',
