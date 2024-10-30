@@ -1,8 +1,7 @@
 ---
-title: 贡献指南
-description: 计算机科学保研指南贡献指南。
-
+title: 基本配置与部署
 ---
+
 import { Steps } from '@astrojs/starlight/components';
 import { FileTree } from '@astrojs/starlight/components';
 
@@ -10,11 +9,7 @@ import { FileTree } from '@astrojs/starlight/components';
 本文档在撰写之初，使用的框架为 Vitepress 而非现在使用的 Astro，因此可能导致部分内容稍微不符合，若影响正常阅读，请在 Issue 中留言。
 :::
 
-## 贡献流程
-
-贡献指南是关于 CSBAOYAN2025 相关内容的贡献指南，其中指引不同技术水平的撰写者完成对于 CSBAOYAN2025 内容的贡献。
-
-本部分将讲解详细的贡献流程，其中包括的前置技能有 <u>Git 的使用</u>以及 <u>Markdown 的撰写</u>。相关技能的初步了解可以前往 [廖雪峰的 Git 教程](https://www.liaoxuefeng.com/wiki/896043488029600) 以及 [Markdown 官方教程](https://markdown.com.cn/basic-syntax/) 进行学习。
+本部分将讲解详细的基本配置与部署流程，其中包括的前置技能有 <u>Git 的使用</u>以及 <u>Markdown 的撰写</u>。相关技能的初步了解可以前往 [廖雪峰的 Git 教程](https://www.liaoxuefeng.com/wiki/896043488029600) 以及 [Markdown 官方教程](https://markdown.com.cn/basic-syntax/) 进行学习。
 
 ### 注册 Github 账号
 
@@ -24,7 +19,7 @@ import { FileTree } from '@astrojs/starlight/components';
 
 在 [Git 官网](https://git-scm.com/) 选择下载 Windows 版本并按照提示进行安装。
 
-![alt text](./images/贡献指南/download_git.png)
+![alt text](../images/贡献指南/download_git.png)
 
 在安装中需要注意的是：
 
@@ -61,19 +56,19 @@ cat ~/.ssh/id_ed25519.pub
 
 进入本仓库的 [Github 主页](https://github.com/CS-BAOYAN/CS-BAOYAN-2025)，点击 `Fork` 按钮，即可将本仓库 Fork 到自己的 Github 账号下。
 
-![alt text](./images/贡献指南/fork_1.png)
+![alt text](../images/贡献指南/fork_1.png)
 
-![alt text](./images/贡献指南/fork_2.png)
+![alt text](../images/贡献指南/fork_2.png)
 
 Fork 操作本质上是复制了一份本仓库到自己的账号下，并在自己的账号下享有修改的权限，同时可以比较自己账号下的仓库与上游仓库之间的更改差别，Fork后的仓库可以在自己账号的 Repositories 中看到。
 
-![alt text](./images/贡献指南/find_fork.png)
+![alt text](../images/贡献指南/find_fork.png)
 
 ### 克隆仓库
 
 在 Fork 完成之后，在自己 Fork 的仓库中，找到并点击 `< > Code` 按钮，之后点击 `SSH` 按钮，并复制链接。
 
-![alt text](./images/贡献指南/gain_ssh.png)
+![alt text](../images/贡献指南/gain_ssh.png)
 
 在本地找到适合保存本项目的文件夹，右键资源管理器，点击 `在终端中打开`，并进行克隆操作。
 
@@ -156,89 +151,3 @@ pnpm dev
 ```
 
 第一行进行依赖的安装，第二行进行项目的运行，此时可以在本地访问网页，具体 url 见终端输出。
-
-### 撰写文档
-
-在了解了文件结构之后便可以开始撰写文档了，确认自己想要撰写的文档所隶属于的类别，并进入该文件夹，新建一个 Markdown 文档，按照 Markdown 文档的语法进行撰写。
-
-与此同时值得注意的是，Astro 支持部分的 Markdown 拓展语法，这些内容可以在 [官方文档](https://docs.astro.build/zh-cn/getting-started/) 中查阅。
-
-### Astro 配置
-
-详细的 Astro 配置请参考 [Astro 官方文档](https://docs.astro.build/zh-cn/getting-started/)，这里只介绍 Astro 配置的必要内容。
-
-当读者想要重新新建一个文档的时候，需要在 `astro.config.mjs` 文件中进行配置，以下是一个示例：
-
-```ts {"1":5} ins={"2":6-9} ins={"3":16-18} {"4":20-23} 
-export default defineConfig({
-	integrations: [
-		starlight({
-			...,
-			sidebar: [
-				{
-					label: '关于我们',
-					slug: '关于我们',
-				},
-				{
-					label: '贡献指南',
-					slug: '贡献指南',
-				},
-				{
-					label: 'Guides',
-					items: [
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
-				},
-			],
-		}),
-	],
-});
-```
-
-<Steps>
-1. 在 `integrations` 中找到 `starlight` 集成，并找到 `sidebar` 侧边栏。
-2. 假如说想要添加一则新文档 `关于我们.mdx`，使用 `label` 添加到侧边栏标题，并在 `slug` 中填写路径即可，可以省略后缀名。
-3. 假如说在某一目录下添加一则新文档 `guides/example.mdx`，且在侧边栏中显示在 `Guides` 下面，则需要使用 `items` 字段，并在其中添加一个新的对象，规则不变。
-4. 对于目录 `reference`，可以注意到其中包含了 `autogenerate` 字段，该字段可以自动生成目录，从而不需要手动添加。
-</Steps>
-
-### 提交更改
-
-在完成了文档的修改之后，可以使用 Git 进行更改的提交：
-
-```shell
-git pull origin main
-git add .
-git commit -m "your commit message"
-git push origin main
-```
-
-之后可以看到自己的更改已经提交到了自己的 Github 仓库中。
-
-### 发起 Pull Request
-
-假如说进行了成功的提交，可以注意到，自己的仓库中应显示如 `1 commit ahead of` 的字样。点击 `Contribute` 并点击 `Open pull request` 即可发起一个 Pull Request，并等待管理员进行审核。
-
-![alt text](./images/贡献指南/pr_1.png)
-
-请确保 PR 的 title 中表意明确，同时 description 中清晰描述了自己添加的内容，之后点击 `Create pull request` 即可，管理员在收到内容之后会进行审查并给出 `comment` 或直接将你的 PR Merge 进主分支，即完成了贡献。
-
-![alt text](./images/贡献指南/pr_2.png)
-
-### 完成贡献
-
-进行了上述的内容，便成功完成了一次贡献，你的内容将保留在 CABAOYAN2025 中，并为后来者指引方向。
-
-## 保研经验贴贡献流程
-
-贡献者可以在 `/src/content/docs/保研经验贴/2024年` 中新开一则 Markdown 文档，并按照 Markdown 的语法进行撰写，并使用上述流程进行投稿；或者已经在其他平台进行了投稿的，可以在 `/src/content/docs/保研经验贴/2024年.md` 文档中添加自己的链接。
-
-对于添加链接的方式，需要按照格式：`* @[你的昵称](你的主页或者社交平台链接)的[文章标题](文章链接)` 进行添加，这类内容在 `/src/content/docs/保研经验贴` 的往届内容中均有示例，请参考。
-
-## 致全体贡献者
-
-感谢每一位贡献者的辛勤贡献，你们均无私地将信息进行了开源分享，这有助于未来的每一位保研er更好地求学，并前往更好的地方，更好的提升自我，向你们每一位致以最诚挚的感谢。
