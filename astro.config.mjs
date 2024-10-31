@@ -30,7 +30,13 @@ export default defineConfig({
 				},
 				{
 					label: '贡献指南',
-					slug: '贡献指南',
+					items: [
+						{ label: '基本配置与部署', slug: '贡献指南/基本配置' },
+						{ label: '撰写文档', slug: '贡献指南/撰写文档' },
+						{ label: '提交 Pull Request', slug: '贡献指南/提交贡献' },
+						{ label: '提交 Issue', slug: '贡献指南/提交需求' },
+						{ label: '保研经验贴贡献流程', slug: '贡献指南/保研经验贴' },
+					],
 				},
 				{
 					label: '保研经验贴',
